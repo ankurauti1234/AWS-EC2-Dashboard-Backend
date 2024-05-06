@@ -1,7 +1,8 @@
+require("dotenv").config(); // Load environment variables from .env file
+
 const mongoose = require("mongoose");
 
-const url =
-  "mongodb+srv://ankurauti:ankurauti02@cluster0.hgmfs5z.mongodb.net/myDevices?retryWrites=true&w=majority&appName=Cluster0";
+const url = process.env.MONGODB_URL; // Use the MONGODB_URL environment variable
 
 async function mongoConnect() {
   try {
