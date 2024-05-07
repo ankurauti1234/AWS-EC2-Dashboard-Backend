@@ -28,7 +28,13 @@ const devSchema = new mongoose.Schema({
 
   Network_Latch: {
     Ip_up: { type: Boolean, required: true },
-    Sim: { type: Number, required: true,     }, // 1 for sim1 2 for sim2
+    Sim: { type: Number, required: true }, // 1 for sim1 2 for sim2
+  },
+
+  METER_OTA: {
+    previous: { type: String, required: true },
+    update: { type: String, required: true },
+    success: { type: Boolean, required: true },
   },
 });
 
