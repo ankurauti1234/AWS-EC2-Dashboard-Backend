@@ -23,8 +23,8 @@ function generateRandomData() {
     },
     Location: {
       Cell_Info: {
-        lat: faker.location.latitude(),
-        lon: faker.location.longitude(),
+        lat: 18.4861,
+        lon: -69.9312,
       },
       Installing: faker.datatype.boolean(),
     },
