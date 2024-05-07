@@ -1,9 +1,16 @@
+const mongoConnect = require("./db");
+const deviceSchema = require("./model/deviceModel");
+const deviceAlertsSchema = require("./model/deviceAlertsModel");
+const { faker } = require("@faker-js/faker");
+
+mongoConnect();
+
 function generateRandomData() {
   return {
     Watermark_id: {
       reporting_time: Date.now(),
       id: 69,
-      confidence: faker.datatype.number({ min: 0, max: 100 }),
+      confidence: faker.number.int({ min: 0, max: 100 }),
     },
     Meter_Installation: {
       HHID: "APM32",
@@ -16,24 +23,40 @@ function generateRandomData() {
     },
     Location: {
       Cell_Info: {
-        lat: faker.datatype.number({ min: -90, max: 90 }),
-        lon: faker.datatype.number({ min: -180, max: 180 }),
+        lat: faker.location.latitude(),
+        lon: faker.location.longitude(),
       },
       Installing: faker.datatype.boolean(),
     },
     Network_Latch: {
       Ip_up: faker.datatype.boolean(),
-      Sim: faker.datatype.number({ min: 1, max: 2 }),
+      Sim: faker.number.int({ min: 1, max: 2 }),
     },
     METER_OTA: {
-      previous: null, // Will be updated every minute
-      update: null, // Will be updated every minute
-      success: null, // Will be updated every minute
+      previous: faker.system.semver(),
+      update: faker.system.semver(),
+      success: faker.datatype.boolean(),
     },
   };
 }
 
-function sendDataToMongoEvery5Seconds() {
+async function saveDataToMongo(inputJSON) {
+  try {
+    const result = await deviceSchema.insertMany(inputJSON);
+    if (result.length > 0) {
+      return {
+        statusCode: 200,
+        message: "Document inserted successfully",
+      };
+    } else {
+      throw new Error("Document not inserted");
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+function sendDataToMongoEvery3Hours() {
   setInterval(() => {
     const dummyData = generateRandomData();
     saveDataToMongo([dummyData])
@@ -43,28 +66,8 @@ function sendDataToMongoEvery5Seconds() {
       .catch((error) => {
         console.error(error.message);
       });
-  }, 5000); // 5 seconds in milliseconds
+  }, 5000); // 3 hours in milliseconds
 }
 
-function updateMeterOTA() {
-  setInterval(() => {
-    const dummyData = {
-      METER_OTA: {
-        previous: faker.system.semver(),
-        update: faker.system.semver(),
-        success: faker.datatype.boolean(),
-      },
-    };
-    saveDataToMongo([dummyData])
-      .then((result) => {
-        console.log(result.message);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  }, 60000); // 1 minute in milliseconds
-}
-
-// Call the functions to start sending data and updating METER_OTA
-sendDataToMongoEvery5Seconds();
-updateMeterOTA();
+// Call the function to start sending data
+sendDataToMongoEvery3Hours();
