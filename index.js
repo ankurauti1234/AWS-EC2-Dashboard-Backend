@@ -115,7 +115,7 @@ function generateRandomAlertData() {
         Details: {
           name: "System Error",
           error_code: faker.number.int({ min: 400, max: 599 }),
-          message: faker.lorem.words(),
+          message: faker.lorem.words({ min: 8, max: 15 }),
         },
       };
 
