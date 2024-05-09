@@ -18,11 +18,7 @@ const dominicanRepublicLocations = [
   { lat: 18.5885, lon: -68.4053 }, // Higüey
 ];
 
-
-
-
 function generateRandomData() {
-
   const randomDominicanRepublicLocation =
     dominicanRepublicLocations[
       Math.floor(Math.random() * dominicanRepublicLocations.length)
@@ -167,7 +163,7 @@ function sendDataToMongoEvery5min() {
       .catch((error) => {
         console.error(error.message);
       });
-  }, 5 * 60000); // 5 minute in milliseconds
+  }, 60000); // 5 minute in milliseconds
 }
 
 // Call the functions to start sending data
