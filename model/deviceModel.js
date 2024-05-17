@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const devSchema = new mongoose.Schema({
-  device: { type: Number },
+  device: { type: String },
 
   Location: {
     ID: { type: Number },
