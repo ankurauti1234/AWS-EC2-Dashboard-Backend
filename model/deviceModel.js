@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const devSchema = new mongoose.Schema({
   device: { type: String },
 
-  Location: {
+  LOCATION:{
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
