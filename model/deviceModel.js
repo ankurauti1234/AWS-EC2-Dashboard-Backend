@@ -33,7 +33,7 @@ const devSchema = new mongoose.Schema({
     confidence: { type: Number },
   },
 
-  Fingerprint_id: {
+  FINGERPRINT_ID: {
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
@@ -67,7 +67,7 @@ const devSchema = new mongoose.Schema({
     no_of_sessions: { type: Number },
   },
 
-  Meter_Installation: {
+  METER_INSTALLATION: {
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
@@ -123,7 +123,7 @@ const devSchema = new mongoose.Schema({
     marked: { type: Number },
   },
 
-  Network_Latch: {
+  NETWORK_LATCH: {
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
@@ -189,7 +189,7 @@ const devSchema = new mongoose.Schema({
     success: { type: Boolean },
   },
 
-  Power: {
+  POWER: {
     Tv: { type: Boolean },
     Main: { type: Boolean },
     Smps: { type: Boolean },
@@ -208,7 +208,7 @@ const devSchema = new mongoose.Schema({
     TS: { type: Number },
     Type: { type: Number },
     boot_ts: { type: Number },
-    install: { type: Number},
+    install: { type: Number },
     last_boot: { type: Number },
     relay_status: [{ type: Boolean }],
   },
@@ -217,7 +217,7 @@ const devSchema = new mongoose.Schema({
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
-    boot_ts: { type: Number},
+    boot_ts: { type: Number },
     install: { type: Number },
     last_boot: { type: Number },
     relay_status: [{ type: Boolean }],
@@ -225,9 +225,9 @@ const devSchema = new mongoose.Schema({
 
   STB_DERIVED_TV_STATUS: {
     ID: { type: Number },
-    TS: { type: Number},
-    Type: { type: Number},
-    derived: { type: Boolean, },
+    TS: { type: Number },
+    Type: { type: Number },
+    derived: { type: Boolean },
   },
 
   AUDIO_SOURCE: {
