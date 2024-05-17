@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const devSchema = new mongoose.Schema({
   device: { type: String },
 
-  LOCATION:{
+  LOCATION: {
     ID: { type: Number },
     TS: { type: Number },
     Type: { type: Number },
@@ -38,7 +38,8 @@ const devSchema = new mongoose.Schema({
     TS: { type: Number },
     Type: { type: Number },
     reporting_time: { type: Number },
-    id: { type: Number },
+    channel_id: { type: Number },
+    program_id: { type: Number },
     confidence: { type: Number },
   },
 

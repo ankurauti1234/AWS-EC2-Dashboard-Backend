@@ -22,8 +22,7 @@ let lastDeviceId = 0;
 let lastAlertId = 0;
 
 function generateRandomData() {
-
-    lastDeviceId++;
+  lastDeviceId++;
 
   const randomDominicanRepublicLocation =
     dominicanRepublicLocations[
@@ -31,7 +30,7 @@ function generateRandomData() {
     ];
 
   return {
-    device: faker.number.int({ min: 1, max: 5 }),
+    DEVICE_ID: faker.number.int({ min: 1, max: 5 }),
 
     LOCATION: {
       ID: lastDeviceId,
@@ -86,7 +85,8 @@ function generateRandomData() {
       TS: Date.now(),
       Type: 4,
       reporting_time: Date.now(),
-      id: faker.number.int({ min: 1, max: 50 }),
+      channel_id: faker.number.int({ min: 1, max: 50 }),
+      program_id: faker.number.int({ min: 1, max: 30 }),
       confidence: faker.number.int({ min: 0, max: 100 }),
     },
 
@@ -185,8 +185,19 @@ function generateRandomData() {
         faker.datatype.boolean(),
         faker.datatype.boolean(),
         faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
       ],
       viewing_guests: [
+        faker.datatype.boolean(),
+        faker.datatype.boolean(),
         faker.datatype.boolean(),
         faker.datatype.boolean(),
         faker.datatype.boolean(),
@@ -321,12 +332,14 @@ function generateRandomData() {
       Type: 38,
       state: faker.datatype.boolean(),
     },
+
     DERIVED_TV_STATUS: {
       ID: lastDeviceId,
       TS: Date.now(),
       Type: 39,
       state: faker.datatype.boolean(),
     },
+
     AUDIO_SOURCE: {
       ID: lastDeviceId,
       TS: Date.now(),
@@ -337,7 +350,7 @@ function generateRandomData() {
 }
 
 function generateRandomAlertData() {
-  lastAlertId++
+  lastAlertId++;
   const eventType = faker.number.int({ min: 1, max: 5 }); // Generate a random event type
 
   switch (eventType) {
